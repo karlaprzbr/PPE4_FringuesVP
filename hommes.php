@@ -12,11 +12,24 @@
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
+        <div id="sideNav">
+            <div id="contenu">
+                <p>CATALOGUE PAR PRODUITS</p>
+                <a href="#">Tous nos produits</a>
+                <a href="#">Tops</a>
+                <a href="#">Jeans</a>
+                <a href="#">Robes</a>
+                <a href="#">Vestes</a>
+                <a href="#">Chaussures</a>
+                <p>CATALOGUE PAR CONCEPT</p>
+                <a href="#">Basics</a>
+                <a href="#">Denim</a>
+                <a href="#">Soirée</a>
+                <a href="#">Sport</a>
+            </div>
+        </div>
         
         <div id="main">
-            <div class="homeHeader">
-                <h1>VOUS NE VOUS EN SERVEZ PLUS ?<br>VENDEZ-LE !</h1>
-            </div>
         </div>
         
         <?php require_once("includes/footer.php")?>
