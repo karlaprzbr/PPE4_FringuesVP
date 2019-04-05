@@ -10,7 +10,7 @@ body {
     margin: 0 auto;
     display: grid;
     grid-template-columns: 20% auto 20%;
-    grid-template-rows: 75px 75px auto auto;
+    grid-template-rows: 75px 75px auto 75px;
 }
 
 a {
@@ -37,6 +37,14 @@ header {
 
 header img {
     height: 40px;
+}
+
+header h1 {
+    font-family: 'Permanent Marker', cursive;
+}
+
+header h1 span {
+    font-family: 'Walter Turncoat', cursive;
 }
 
 /** NAVBAR **/
@@ -68,6 +76,28 @@ nav i {
 
 nav .active {
     text-decoration: underline;
+}
+
+nav #icons {
+    display: inline-flex;
+}
+
+nav input {
+    border: none;
+    width: 150px;
+}
+
+nav button {
+    border: none;
+    background-color: inherit;
+}
+
+nav button:hover {
+    cursor: pointer;
+}
+
+nav form {
+    border-bottom: 2px solid #EFEFEF;
 }
 
 /** SIDENAV **/
@@ -108,6 +138,7 @@ nav .active {
     color: white;
     text-align: center;
     background-color: black;
+    padding: 10px;
 }
 
 /** FOOTER **/
@@ -115,8 +146,20 @@ footer {
     grid-row: 4;
     grid-column: 1 / 4;
     background-color: #444;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 footer p, footer a, footer a:hover {
     color: white;
+    font-size: 18px;
+}
+
+footer .marque {
+    font-family: 'Permanent Marker', cursive;
+}
+
+footer .desc {
+    font-family: 'Walter Turncoat', cursive;
 }
