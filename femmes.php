@@ -6,26 +6,22 @@
         <nav>
             <ul>
                 <li><a href="femmes.php" class="active">FEMMES</a></li>
-                <li><a href="#">HOMMES</a></li>
+                <li><a href="hommes.php">HOMMES</a></li>
                 <li><a href="#">ENFANTS</a></li>
-                <li><a href="#">PROMOTIONS</a></li>
+                <li><a href="#">TOUS</a></li>
+                <li><a href="#">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
         <div id="sideNav">
             <div id="contenu">
-                <p>CATALOGUE PAR PRODUITS</p>
-                <a href="#">Tous nos produits</a>
+                <p>FILTRER PAR PRODUITS</p>
+                <a href="#">Tous les produits</a>
                 <a href="#">Tops</a>
                 <a href="#">Jeans</a>
                 <a href="#">Robes</a>
                 <a href="#">Vestes</a>
                 <a href="#">Chaussures</a>
-                <p>CATALOGUE PAR CONCEPT</p>
-                <a href="#">Basics</a>
-                <a href="#">Denim</a>
-                <a href="#">Soirée</a>
-                <a href="#">Sport</a>
             </div>
         </div>
         

@@ -6,26 +6,24 @@
         <nav>
             <ul>
                 <li><a href="femmes.php">FEMMES</a></li>
-                <li><a href="hommes.php"  class="active">HOMMES</a></li>
+                <li><a href="hommes.php">HOMMES</a></li>
                 <li><a href="#">ENFANTS</a></li>
                 <li><a href="#">TOUS</a></li>
                 <li><a href="#">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
-        <div id="sideNav">
-            <div id="contenu">
-                <p>FILTRER PAR PRODUITS</p>
-                <a href="#">Tous les produits</a>
-                <a href="#">Tops</a>
-                <a href="#">Jeans</a>
-                <a href="#">Robes</a>
-                <a href="#">Vestes</a>
-                <a href="#">Chaussures</a>
-            </div>
-        </div>
         
-        <div id="main">
+        <div id="main" class="conMain">
+            <h3>Connexion</h3>
+            <form>
+                <label>Mail</label>
+                <input>
+                <label>Mot de passe</label>
+                <input>
+                <button>Connexion</button>
+            </form>
+            <p>Pas encore membre ? <a href="#">Inscrivez-vous !</a></p>
         </div>
         
         <?php require_once("includes/footer.php")?>

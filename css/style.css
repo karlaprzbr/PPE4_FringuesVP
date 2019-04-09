@@ -141,6 +141,48 @@ nav form {
     padding: 10px;
 }
 
+/** CONNEXION MAIN **/
+
+.conMain {
+    margin: 200px auto;
+}
+
+.conMain h3, .conMain p {
+    text-align: center;
+}
+
+.conMain a {
+    text-decoration: underline;
+}
+
+.conMain form {
+    display: block;
+    width: 400px;
+}
+
+.conMain input {
+    width: 100%;
+    border-top: none;
+    border-right: none;
+    border-bottom: 2px solid #efefef;
+    border-left: none;
+    cursor: text;
+}
+
+.conMain label {
+    width: 100%;
+    text-align: center;
+    font-family: 'Varela Round', sans-serif;
+}
+
+.conMain button {
+    margin: 20px 0;
+    border: none;
+    width: 100%;
+    height: 30px;
+    font-family: 'Varela Round', sans-serif;
+}
+
 /** FOOTER **/
 footer {
     grid-row: 4;

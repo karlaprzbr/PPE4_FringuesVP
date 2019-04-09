@@ -6,8 +6,9 @@
         <nav>
             <ul>
                 <li><a href="femmes.php">FEMMES</a></li>
-                <li><a href="#">HOMMES</a></li>
+                <li><a href="hommes.php">HOMMES</a></li>
                 <li><a href="#">ENFANTS</a></li>
+                <li><a href="#">TOUS</a></li>
                 <li><a href="#">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
