@@ -1,3 +1,5 @@
+@import url("media.css");
+
 /** GLOBAL **/
 html {
     height: 100%;
@@ -45,6 +47,10 @@ header h1 {
 
 header h1 span {
     font-family: 'Walter Turncoat', cursive;
+}
+
+.icon, header a:not(:first-of-type) {
+  display: none;
 }
 
 /** NAVBAR **/
@@ -141,6 +147,10 @@ nav form {
     padding: 10px;
 }
 
+#main img.banniere {
+  display: none;
+}
+
 /** CONNEXION MAIN **/
 
 .conMain {
@@ -182,6 +192,32 @@ nav form {
     height: 30px;
     font-family: 'Varela Round', sans-serif;
 }
+
+/** PRODUIT MAIN **/
+#tout img {
+  width: 200px;
+}
+
+#tout {
+  display: inline-flex;
+  flex-wrap: wrap;
+}
+
+.produit {
+  margin: 20px;
+  border: 2px solid #EFEFEF;
+  width: 200px;
+}
+
+.produit p {
+  margin: 0;
+  padding: 10px;
+}
+
+.title {
+  background-color: #EFEFEF;
+}
+
 
 /** FOOTER **/
 footer {
