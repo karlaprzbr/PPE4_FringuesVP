@@ -15,12 +15,12 @@
         <div id="sideNav">
             <div id="contenu">
                 <p>FILTRER PAR PRODUITS</p>
-                <a href="#">Tous les produits</a>
-                <a href="#">Tops</a>
-                <a href="#">Jeans</a>
-                <a href="#">Robes</a>
-                <a href="#">Vestes</a>
-                <a href="#">Chaussures</a>
+                <a href="femmes.php" class="active">Tous les produits</a>
+                <a href="femme_tops.php">Tops</a>
+                <a href="femme_bas.php">Jeans, pantalons, shorts</a>
+                <a href="#">Robes, jupes</a>
+                <a href="#">Vestes, manteaux</a>
+                <a href="#">Chaussures, accessoires</a>
             </div>
         </div>
 

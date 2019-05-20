@@ -5,9 +5,9 @@
         <?php require_once("includes/header.php")?>
         <nav>
             <ul>
-                <li><a href="femmes.php">FEMMES</a></li>
-                <li><a href="hommes.php" class="active">HOMMES</a></li>
-                <li><a href="Tout.php">TOUT</a></li>
+                <li><a href="femmes.php" class="active">FEMMES</a></li>
+                <li><a href="hommes.php">HOMMES</a></li>
+                <li><a href="tout.php">TOUT</a></li>
                 <li><a href="#">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
@@ -15,11 +15,12 @@
         <div id="sideNav">
             <div id="contenu">
                 <p>FILTRER PAR PRODUITS</p>
-                <a href="hommes.php" class="active">Tous les produits</a>
-                <a href="#">Chemises</a>
-                <a href="#">Jeans, pantalons, shorts</a>
-                <a href="#">Vestes, manteaux</a>
-                <a href="#">Chaussures, accessoires</a>
+                <a href="femmes.php">Tous les produits</a>
+                <a href="femme_tops.php">Tops</a>
+                <a href="femme_bas.php">Jeans, pantalons, shorts</a>
+                <a href="femme_robes.php" class="active">Robes, jupes</a>
+                <a href="femme_vestes.php">Vestes, manteaux</a>
+                <a href="femme_accessoires.php">Chaussures, accessoires</a>
             </div>
         </div>
 
@@ -29,7 +30,7 @@
               session_start();
               $bdd = new PDO('mysql:host=localhost;dbname=fringuesvp','root','');
               $bdd->exec("SET NAMES 'UTF8'");
-              $produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.img_id = images.img_id INNER JOIN genres_vet ON produits.genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.membre_id = membres.membre_id WHERE genre_libelle = "homme"');
+              $produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.img_id = images.img_id INNER JOIN genres_vet ON produits.genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.membre_id = membres.membre_id WHERE genre_libelle = "femme" AND type_vet_libelle = "robes_jupes"');
               $donnees = $produits->fetchAll();
               foreach ($donnees as $row) {
                 ?>
