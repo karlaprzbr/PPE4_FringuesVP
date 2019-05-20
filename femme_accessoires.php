@@ -30,13 +30,13 @@
               session_start();
               $bdd = new PDO('mysql:host=localhost;dbname=fringuesvp','root','');
               $bdd->exec("SET NAMES 'UTF8'");
-              $produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.img_id = images.img_id INNER JOIN genres_vet ON produits.genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.membre_id = membres.membre_id WHERE genre_libelle = "femme" AND type_vet_libelle = "accessoires_autres"');
+              $produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.pdt_img_id = images.img_id INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE genre_libelle = "femme" AND type_vet_libelle = "accessoires_autres"');
               $donnees = $produits->fetchAll();
               foreach ($donnees as $row) {
                 ?>
                 <div class="produit">
                   <p class="title"><?php echo $row['pdt_libelle'] ?></p>
-                  <a href="#"><img src="<?php echo $row['img_lien'] ?>" /></a>
+                  <a href="fiche_article.php?Id_Produit=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['img_lien'] ?>" /></a>
                   <p><?php echo $row['pdt_prix'] ?> €</p>
                   <p>Taille <?php echo $row['pdt_taille'] ?></p>
                 </div>
