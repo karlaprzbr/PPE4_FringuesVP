@@ -194,11 +194,11 @@ nav form {
 }
 
 /** PRODUIT MAIN **/
-#tout img {
+#produits img {
   width: 200px;
 }
 
-#tout {
+#produits {
   display: inline-flex;
   flex-wrap: wrap;
 }
