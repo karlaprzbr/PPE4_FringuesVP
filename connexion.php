@@ -1,3 +1,7 @@
+<?php
+session_start();
+?>
+
 <!doctype html>
 <html>
     <?php require_once("includes/head.php")?>
@@ -13,7 +17,7 @@
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
-        
+
         <div id="main" class="conMain">
             <h3>Connexion</h3>
             <form>
@@ -25,7 +29,7 @@
             </form>
             <p>Pas encore membre ? <a href="#">Inscrivez-vous !</a></p>
         </div>
-        
+
         <?php require_once("includes/footer.php")?>
     </body>
 </html>
