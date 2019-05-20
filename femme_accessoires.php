@@ -36,7 +36,7 @@
                 ?>
                 <div class="produit">
                   <p class="title"><?php echo $row['pdt_libelle'] ?></p>
-                  <a href="fiche_article.php?Id_Produit=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['img_lien'] ?>" /></a>
+                  <a href="fiche_produit.php?pdt_id=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['img_lien'] ?>" /></a>
                   <p><?php echo $row['pdt_prix'] ?> €</p>
                   <p>Taille <?php echo $row['pdt_taille'] ?></p>
                 </div>
