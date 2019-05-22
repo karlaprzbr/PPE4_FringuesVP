@@ -1,12 +1,14 @@
 <?php
 session_start();
+$bdd = new PDO('mysql:host=localhost;dbname=fringuesvp;charset=utf8', 'root', '');
+require_once("fonctions_panier.php");
 ?>
 
 <!doctype html>
 <html>
     <?php require_once("includes/head.php")?>
     <body>
-        <?php require_once("includes/header.php")?>
+        <?php require_once("includes/includes.php")?>
         <nav>
             <ul>
                 <li><a href="femmes.php">FEMMES</a></li>
@@ -20,16 +22,39 @@ session_start();
 
         <div id="main" class="conMain">
             <h3>Connexion</h3>
-            <form>
-                <label>Mail</label>
-                <input>
-                <label>Mot de passe</label>
-                <input>
-                <button>Connexion</button>
+            <form method="post" action="connexion.php">
+              <table>
+                <tr>
+                  <td>Mail : </td>
+                  <td><input type="text" name="mail"></td>
+                </tr>
+                <tr>
+                  <td>Mot de passe : </td>
+                  <td><input type="password" name="mdp"></td>
+                </tr>
+                <tr>
+                  <td></td>
+                  <td><input type="submit" name="envoi" value="Connexion"></td>
+                </tr>
+                <tr>
+                  <td>Pas encore membre ?</td>
+                  <td><a href="inscription.php">Inscrivez-vous !</a></td>
+                </tr>
+              </table>
             </form>
-            <p>Pas encore membre ? <a href="#">Inscrivez-vous !</a></p>
+            <?php
+            if (isset($_POST['envoi']) AND isset($_POST['mail']) AND isset($_POST['mdp']) AND !empty($_POST['mail']) AND !empty($_POST['mdp'])) {
+              $requete = $bdd->query('SELECT * FROM membres WHERE membre_mail = "'.$_POST['mail'].'" AND membre_MDP = "'.$_POST['mdp'].'"')->fetch();
+              if ($requete) {
+                $_SESSION['id'] = $requete['membre_id'];
+                $_SESSION['mail'] = $requete['membre_mail'];
+                //creationPanier(true);
+                //header("Location: profil.php");
+              } else {
+                echo "<p>L'identifiant et le mot de passe n'ont pas été reconnus.</p>";
+              }
+            }
+            ?>
         </div>
-
-        <?php require_once("includes/footer.php")?>
     </body>
 </html>

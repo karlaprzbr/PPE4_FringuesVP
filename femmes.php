@@ -10,7 +10,7 @@ $donnees = $produits->fetchAll();
 <html>
     <?php require_once("includes/head.php")?>
     <body>
-        <?php require_once("includes/header.php")?>
+        <?php require_once("includes/includes.php")?>
         <nav>
             <ul>
                 <li><a href="femmes.php" class="active">FEMMES</a></li>
@@ -47,6 +47,5 @@ $donnees = $produits->fetchAll();
         </div>
         </div>
 
-        <?php require_once("includes/footer.php")?>
     </body>
 </html>
