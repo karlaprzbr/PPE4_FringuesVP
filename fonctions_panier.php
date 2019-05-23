@@ -13,16 +13,19 @@ function ajouterArticle($pdt_id,$pdt_libelle,$pdt_prix) {
   // Si le panier existe
   if (isset($_SESSION['panier'])) {
     // On regarde si le produit est déjà dans le panier
-    //$position_pdt = array_search($pdt_libelle, $_SESSION['panier']['pdt_libelle']);
-    //if ($position_pdt == false) {
-      // S'il n'est pas déjà dans le panier alors on l'ajoute
+    $position_pdt = array_search($pdt_id, $_SESSION['panier']['pdt_id']);
+    if ($position_pdt !== false) {
+      // S'il est déjà dans le panier on le notifie au client
+      echo "<p>L'article est déjà dans le panier.</p>";
+    } else {
+      // Sinon on l'ajoute
       array_push($_SESSION['panier']['pdt_id'], $pdt_id);
       array_push($_SESSION['panier']['pdt_libelle'], $pdt_libelle);
       array_push($_SESSION['panier']['pdt_prix'], $pdt_prix);
-    //}
+      echo "<p>L'article a été ajouté au panier.</p>";
+    }
   } else {
     creationPanier();
-    // echo "Un problème est survenu veuillez contacter l'administrateur du site.";
   }
 }
 
@@ -42,7 +45,7 @@ function supprimerArticle($pdt_libelle) {
         array_push($tmp['pdt_prix'], $_SESSION['panier']['pdt_prix'][$i]);
       }
     }
-    // On remplace notre panier session par le panier temp
+    // On remplace notre panier session par le panier temporaire
     $_SESSION['panier'] = $tmp;
     // On efface le panier temporaire
     unset($tmp);
@@ -52,7 +55,7 @@ function supprimerArticle($pdt_libelle) {
 }
 
 function MontantGlobal() {
-  $total = 0;
+  $total = floatval(0);
   for ($i = 0; $i < count($_SESSION['panier']['pdt_libelle']); $i++) {
     $total += $_SESSION['panier']['pdt_prix'][$i];
   }
