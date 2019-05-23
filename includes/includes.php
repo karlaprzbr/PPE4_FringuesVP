@@ -1,8 +1,8 @@
 <header id="navig" class="navig">
     <a href="index.php"><h1>FRINGUES <span>ventes privées</span></h1></a>
     <a href="#">Catégories</a>
-    <a href="#">Panier</a>
-    <a href="#">Connexion</a>
+    <a href="panier.php">Panier</a>
+    <a href="connexion.php">Connexion</a>
 </header>
 <a href="javascript:void(0);" class="icon" onclick="openNav()"><i class="fa fa-bars"></i></a>
 <script src="js/openNav.js"></script>

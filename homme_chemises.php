@@ -10,13 +10,13 @@ $donnees = $produits->fetchAll();
 <html>
     <?php require_once("includes/head.php")?>
     <body>
-        <?php require_once("includes/header.php")?>
+        <?php require_once("includes/includes.php")?>
         <nav>
             <ul>
                 <li><a href="femmes.php">FEMMES</a></li>
                 <li><a href="hommes.php" class="active">HOMMES</a></li>
                 <li><a href="Tout.php">TOUT</a></li>
-                <li><a href="#">VENDRE</a></li>
+                <li><a href="vendre.php">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
@@ -46,6 +46,6 @@ $donnees = $produits->fetchAll();
         </div>
         </div>
 
-        <?php require_once("includes/footer.php")?>
+
     </body>
 </html>

@@ -16,7 +16,7 @@ $donnees = $produits->fetchAll();
                 <li><a href="femmes.php">FEMMES</a></li>
                 <li><a href="hommes.php">HOMMES</a></li>
                 <li><a href="tout.php" class="active">TOUT</a></li>
-                <li><a href="#">VENDRE</a></li>
+                <li><a href="vendre.php">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>

@@ -1,6 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=fringuesvp;charset=utf8', 'root', '');
+require_once("includes/script.php");
 require_once("fonctions_panier.php");
 ?>
 
@@ -13,9 +13,8 @@ require_once("fonctions_panier.php");
             <ul>
                 <li><a href="femmes.php">FEMMES</a></li>
                 <li><a href="hommes.php">HOMMES</a></li>
-                <li><a href="#">ENFANTS</a></li>
-                <li><a href="#">TOUS</a></li>
-                <li><a href="#">VENDRE</a></li>
+                <li><a href="tout.php">TOUT</a></li>
+                <li><a href="vendre.php">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>
@@ -48,8 +47,10 @@ require_once("fonctions_panier.php");
               if ($requete) {
                 $_SESSION['id'] = $requete['membre_id'];
                 $_SESSION['mail'] = $requete['membre_mail'];
-                //creationPanier(true);
+                $_SESSION['nb_cmd'] = $requete['membre_nb_cmd'];
+                $_SESSION['nb_pdt_vente'] = $requete['membre_pdt_vente'];
                 //header("Location: profil.php");
+                echo "<p>Vous êtes connecté ! Vous pouvez maintenant vendre et acheter des articles :)</p>";
               } else {
                 echo "<p>L'identifiant et le mot de passe n'ont pas été reconnus.</p>";
               }

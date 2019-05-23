@@ -1,7 +1,6 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=fringuesvp','root','');
-$bdd->exec("SET NAMES 'UTF8'");
+require_once("includes/script.php");
 $produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.pdt_img_id = images.img_id INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE genre_libelle = "femme"');
 $donnees = $produits->fetchAll();
 ?>
@@ -16,7 +15,7 @@ $donnees = $produits->fetchAll();
                 <li><a href="femmes.php" class="active">FEMMES</a></li>
                 <li><a href="hommes.php">HOMMES</a></li>
                 <li><a href="tout.php">TOUT</a></li>
-                <li><a href="#">VENDRE</a></li>
+                <li><a href="vendre.php">VENDRE</a></li>
             </ul>
             <?php require_once("includes/nav.php")?>
         </nav>

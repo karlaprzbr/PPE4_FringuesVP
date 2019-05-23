@@ -23,7 +23,7 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, a:hover, li {
+h1, h2, h3, h4, h5, h6, p, a, a:hover, li, td {
     color: #444;
     font-family: 'Varela Round', sans-serif;
 }
