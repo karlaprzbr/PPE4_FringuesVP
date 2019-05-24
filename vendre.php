@@ -36,7 +36,7 @@ if(isset($_POST['libelle']) && isset($_POST['description']) && isset($_POST['pri
             <?php
             if(isset($_SESSION['mail'])) {
               ?>
-              <form class="" action="vendre.php" method="post">
+              <form class="" action="vendre.php" method="post" enctype="multipart/form-data">
                 <table>
                   <tr>
                     <td>Titre du produit à mettre en vente</td>
@@ -77,6 +77,14 @@ if(isset($_POST['libelle']) && isset($_POST['description']) && isset($_POST['pri
                         ?>
                       </select>
                     </td>
+                  </tr>
+                  <tr>
+                    <td>Choisissez une image pour votre produit</td>
+                    <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
+                  </tr>
+                  <tr>
+                    <td><input type="submit" value="Vendre" name="submit"></td>
+                    <td><button>Annuler</button></td>
                   </tr>
                 </table>
               </form>
