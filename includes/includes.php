@@ -1,6 +1,6 @@
 <header id="navig" class="navig">
     <a href="index.php"><h1>FRINGUES <span>ventes privées</span></h1></a>
-    <a href="#">Catégories</a>
+    <a href="categories.php">Catégories</a>
     <a href="panier.php">Panier</a>
     <a href="connexion.php">Connexion</a>
 </header>

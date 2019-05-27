@@ -4,16 +4,35 @@ require_once("includes/script.php");
 include("fonctions_panier.php");
 
 if(isset($_GET['pdt_id']) AND !empty($_GET['pdt_id'])) {
-  $pdt_id = strip_tags($_GET['pdt_id']);
+  $pdt_id = htmlspecialchars($_GET['pdt_id']);
   $produit = $bdd->prepare('SELECT * FROM produits INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE pdt_id =' . $pdt_id);
   $produit->execute(array($pdt_id));
-  $donnees = $produit->fetch();
-  $pdt_libelle = $donnees['pdt_libelle'];
-  $pdt_prix = $donnees['pdt_prix'];
-  //$commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN images ON produits.pdt_img_id = images.img_id INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE pdt_id =' . $get_id);
-  //$commentaires = $commentaires->fetchAll();
+  $pdt_data = $produit->fetch();
+  $pdt_libelle = $pdt_data['pdt_libelle'];
+  $pdt_prix = $pdt_data['pdt_prix'];
+  $commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN membres ON commentaires.com_membre_id = membres.membre_id INNER JOIN produits ON commentaires.com_pdt_id = produits.pdt_id WHERE pdt_id =' . $pdt_id);
+  if ($commentaires !== false ) {
+    $com_data = $commentaires->fetchAll();
+  }
 } else {
   die('Erreur');
+}
+if (isset($_POST['comment'])) {
+  if (!empty($_POST['objet']) && !empty($_POST['commentaire'])) {
+    $com_objet = htmlspecialchars($_POST['objet']);
+    $com_texte = htmlspecialchars($_POST['commentaire']);
+    $com_date = date("Y-m-d H:i:s");
+    $com_pdt_id = $pdt_id;
+    $com_membre_id = $_SESSION['id'];
+    try {
+      $requete = $bdd->prepare('INSERT INTO commentaires(com_objet,com_texte,com_date,com_pdt_id,com_membre_id) VALUES(?,?,?,?,?)');
+      $requete->execute(array($com_objet,$com_texte,$com_date,$com_pdt_id,$com_membre_id));
+      echo "<p>Votre commentaire a bien été posté.</p>";
+    } catch (\Exception $e) {
+      echo $e->getMessage();
+    }
+
+  }
 }
 ?>
 
@@ -34,20 +53,51 @@ if(isset($_GET['pdt_id']) AND !empty($_GET['pdt_id'])) {
 
         <div id="main">
           <div id="ficheProduit">
-            <h1> <?php echo $donnees['pdt_libelle'] ?> </h1>
-            <img src="<?php echo $donnees['pdt_img_lien'] ?>" alt="Image produit" />
-            <p><?php echo $donnees['pdt_description'] ?> </p>
+            <h1> <?php echo $pdt_data['pdt_libelle'] ?> </h1>
+            <img src="<?php echo $pdt_data['pdt_img_lien'] ?>" alt="Image produit" />
+            <p><?php echo $pdt_data['pdt_description'] ?> </p>
             <p>
-              <?php echo $donnees['pdt_prix'] ?>€
+              <?php echo $pdt_data['pdt_prix'] ?>€
               <form action="fiche_produit.php?pdt_id=<?= $_GET['pdt_id'] ?>" method="POST"><input type="submit" name="ajout_panier" value="Ajouter au panier"></form>
               <?php
               if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['ajout_panier'])) {
                 ajouterArticle($pdt_id,$pdt_libelle,$pdt_prix);
-                // var_dump($_SESSION['panier']);
-                // exit();
+
               }
               ?>
             </p>
+            <?php
+            if ($_SESSION['id']) {
+              ?>
+              <div class="commentaire">
+                <h2>Posez une question au vendeur</h2>
+                <form class="" action="fiche_produit.php?pdt_id=<?=$pdt_id?>" method="post">
+                  <input type="text" name="objet" placeholder="Objet">
+                  <input type="text" name="commentaire" placeholder="Commentaire"/>
+                  <input type="submit" value="Envoyer" name="comment"/>
+                </form>
+                <?php
+                  foreach ($com_data as $row) {
+                    if ($row['com_membre_id'] == $row['pdt_membre_id']) { ?>
+                    <div class="reponse">
+                      <h3 class="objet"><?php echo $row['com_objet'] ?></h3>
+                      <p><?php echo $row['com_texte'] ?></p>
+                      <p>Réponse postée le <?php echo $row['com_date'] ?></p>
+                    </div>
+                  <?php } else { ?>
+                      <div class="question">
+                        <h3 class="objet"><?php echo $row['com_objet'] ?></h3>
+                        <p><?php echo $row['com_texte'] ?></p>
+                        <p>Question posée par <?php echo $row['membre_prenom'] ?> le <?php echo $row['com_date'] ?></p>
+                      </div>
+                  <?php }
+                } ?>
+              </div>
+              <?php
+            }
+            ?>
+
+
           </div>
         </div>
 
