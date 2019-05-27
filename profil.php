@@ -22,9 +22,11 @@ include("fonctions_panier.php");
         <div id="main">
           <?php
           if (isset($_SESSION['id'])) {
-            $requete = $bdd->query('SELECT * FROM membres WHERE membre_id = '.$_SESSION['id'])->fetch();
+            $req_membre = $bdd->query('SELECT * FROM membres WHERE membre_id = '.$_SESSION['id'])->fetch();
+            $req_produits = $bdd->query('SELECT * FROM produits WHERE pdt_membre_id = '.$_SESSION['id']);
+            $donnees = $req_produits->fetchAll();
             ?>
-            <h2><?=$requete['membre_prenom']?> <?=$requete['membre_nom']?></h2>
+            <h2><?=$req_membre['membre_prenom']?> <?=$req_membre['membre_nom']?></h2>
             <p>Nombre de commandes :
               <?php
               if (isset($_SESSION['nb_cmd'])) {
@@ -34,14 +36,19 @@ include("fonctions_panier.php");
               }
               ?>
             </p>
-            <p> Nombre d'articles en vente :
-              <?php
-              if (isset($_SESSION['nb_pdt_vente'])) {
-                echo $_SESSION['nb_pdt_vente'];
-              } else {
-                echo "0";
-              }
-              ?>
+            <p> Articles en vente :
+              <div id="produits">
+                <?php
+                foreach ($donnees as $row) {
+                  ?>
+                  <div class="produit">
+                    <p class="title"><?php echo $row['pdt_libelle'] ?></p>
+                    <a href="fiche_produit.php?pdt_id=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['pdt_img_lien'] ?>" /></a>
+                    <p><?php echo $row['pdt_prix'] ?> €</p>
+                    <p>Taille <?php echo $row['pdt_taille'] ?></p>
+                  </div>
+                <?php } ?>
+              </div>
             </p>
             <?php
           }
@@ -51,19 +58,19 @@ include("fonctions_panier.php");
           <table>
             <tr>
               <td>Nom :</td>
-              <td><?=$requete['membre_nom'] ?></td>
+              <td><?=$req_membre['membre_nom'] ?></td>
             </tr>
             <tr>
               <td>Prénom :</td>
-              <td><?=$requete['membre_prenom'] ?></td>
+              <td><?=$req_membre['membre_prenom'] ?></td>
             </tr>
             <tr>
               <td>Adresse :</td>
-              <td><?=$requete['membre_adresse'] ?></td>
+              <td><?=$req_membre['membre_adresse'] ?></td>
             </tr>
             <tr>
               <td>Mail :</td>
-              <td><?=$requete['membre_mail'] ?></td>
+              <td><?=$req_membre['membre_mail'] ?></td>
             </tr>
             <tr>
               <td><button value="Modifier le profil">Modifier le profil</button></td>
