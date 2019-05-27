@@ -76,7 +76,7 @@ include("fonctions_panier.php");
               <td><button value="Modifier le profil">Modifier le profil</button></td>
               <td>
                 <form action="profil.php" method="post">
-                  <input type="submit" name="deconnexion" value="Deconnexion">
+                  <input type="submit" class="button" name="deconnexion" value="Deconnexion">
                 </form>
                 <?php
                 if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['deconnexion'])) {

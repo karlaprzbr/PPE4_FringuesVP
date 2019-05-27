@@ -25,7 +25,7 @@ require_once("fonctions_panier.php");
               <table>
                 <tr>
                   <td>Mail : </td>
-                  <td><input type="text" name="mail"></td>
+                  <td><input type="text" class="text"name="mail"></td>
                 </tr>
                 <tr>
                   <td>Mot de passe : </td>
@@ -33,7 +33,7 @@ require_once("fonctions_panier.php");
                 </tr>
                 <tr>
                   <td></td>
-                  <td><input type="submit" name="envoi" value="Connexion"></td>
+                  <td><input type="submit" class="button" name="envoi" value="Connexion"></td>
                 </tr>
                 <tr>
                   <td>Pas encore membre ?</td>

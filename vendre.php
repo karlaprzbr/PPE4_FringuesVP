@@ -79,19 +79,19 @@ if(isset($_POST['vendre'])) {
                 <table>
                   <tr>
                     <td>Titre du produit à mettre en vente</td>
-                    <td><input type="text" name="libelle"></td>
+                    <td><input type="text" class="text"name="libelle"></td>
                   </tr>
                   <tr>
                     <td>Description du produit</td>
-                    <td><input type="text" name="description"></td>
+                    <td><input type="text" class="text"name="description"></td>
                   </tr>
                   <tr>
                     <td>Prix</td>
-                    <td><input type="text" name="prix"></td>
+                    <td><input type="text" class="text"name="prix"></td>
                   </tr>
                   <tr>
                     <td>Taille</td>
-                    <td><input type="text" name="taille"></td>
+                    <td><input type="text" class="text"name="taille"></td>
                   </tr>
                   <tr>
                     <td>Choisissez le genre</td>
@@ -123,7 +123,7 @@ if(isset($_POST['vendre'])) {
                     <td><input type="file" name="fileToUpload" id="fileToUpload"></td>
                   </tr>
                   <tr>
-                    <td><input type="submit" value="Vendre" name="vendre"></td>
+                    <td><input type="submit" class="button" value="Vendre" name="vendre"></td>
                   </tr>
                 </table>
               </form>

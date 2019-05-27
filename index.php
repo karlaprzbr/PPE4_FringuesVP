@@ -19,7 +19,7 @@ include("fonctions_panier.php");
             <?php require_once("includes/nav.php")?>
         </nav>
 
-        <div id="main">
+        <div id="main" class="index">
             <div class="homeHeader">
                 <h1>VOUS NE VOUS EN SERVEZ PLUS ?<br>VENDEZ-LE !</h1>
             </div>

@@ -50,15 +50,15 @@ if (isset($_POST['valider_inscription'])) {
                 <table>
                   <tr>
                     <td>Nom de famille :</td>
-                    <td><input type="text" name="membre_nom"></td>
+                    <td><input type="text" class="text"name="membre_nom"></td>
                   </tr>
                   <tr>
                     <td>Prénom :</td>
-                    <td><input type="text" name="membre_prenom"></td>
+                    <td><input type="text" class="text"name="membre_prenom"></td>
                   </tr>
                   <tr>
                     <td>Adresse complète :</td>
-                    <td><input type="text" name="membre_adresse"></td>
+                    <td><input type="text" class="text"name="membre_adresse"></td>
                   </tr>
                   <tr>
                     <td>Mail :</td>
@@ -73,7 +73,7 @@ if (isset($_POST['valider_inscription'])) {
                     <td><input type="password" name="membre_mdp_2"></td>
                   </tr>
                   <tr>
-                    <td><input type="submit" name="valider_inscription" value="Valider"></td>
+                    <td><input type="submit" class="button" name="valider_inscription" value="Valider"></td>
                   </tr>
                 </table>
               </form>

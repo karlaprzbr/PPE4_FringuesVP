@@ -10,7 +10,7 @@ if(isset($_GET['pdt_id']) AND !empty($_GET['pdt_id'])) {
   $pdt_data = $produit->fetch();
   $pdt_libelle = $pdt_data['pdt_libelle'];
   $pdt_prix = $pdt_data['pdt_prix'];
-  $commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN membres ON commentaires.com_membre_id = membres.membre_id INNER JOIN produits ON commentaires.com_pdt_id = produits.pdt_id WHERE pdt_id =' . $pdt_id);
+  $commentaires = $bdd->query('SELECT * FROM commentaires INNER JOIN membres ON commentaires.com_membre_id = membres.membre_id INNER JOIN produits ON commentaires.com_pdt_id = produits.pdt_id WHERE pdt_id ='. $pdt_id .' ORDER BY com_date DESC');
   if ($commentaires !== false ) {
     $com_data = $commentaires->fetchAll();
   }
@@ -58,7 +58,7 @@ if (isset($_POST['comment'])) {
             <p><?php echo $pdt_data['pdt_description'] ?> </p>
             <p>
               <?php echo $pdt_data['pdt_prix'] ?>€
-              <form action="fiche_produit.php?pdt_id=<?= $_GET['pdt_id'] ?>" method="POST"><input type="submit" name="ajout_panier" value="Ajouter au panier"></form>
+              <form action="fiche_produit.php?pdt_id=<?= $_GET['pdt_id'] ?>" method="POST"><input type="submit" class="button" name="ajout_panier" value="Ajouter au panier"></form>
               <?php
               if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['ajout_panier'])) {
                 ajouterArticle($pdt_id,$pdt_libelle,$pdt_prix);
@@ -66,16 +66,21 @@ if (isset($_POST['comment'])) {
               }
               ?>
             </p>
-            <?php
-            if ($_SESSION['id']) {
-              ?>
               <div class="commentaire">
-                <h2>Posez une question au vendeur</h2>
-                <form class="" action="fiche_produit.php?pdt_id=<?=$pdt_id?>" method="post">
-                  <input type="text" name="objet" placeholder="Objet">
-                  <input type="text" name="commentaire" placeholder="Commentaire"/>
-                  <input type="submit" value="Envoyer" name="comment"/>
-                </form>
+                <?php
+                if (isset($_SESSION['id'])) {
+                  ?>
+                  <h2>Posez une question au vendeur</h2>
+                  <form class="" action="fiche_produit.php?pdt_id=<?=$pdt_id?>" method="post">
+                  <input type="text" class="text"name="objet" placeholder="Objet">
+                  <input type="text" class="text"name="commentaire" placeholder="Commentaire"/>
+                  <input type="submit" class="button" value="Envoyer" name="comment"/>
+                  </form>
+                  <?php
+                } else if (!empty($com_data)) {
+                  echo "<h2>Commentaires</h2>";
+                }
+                ?>
                 <?php
                   foreach ($com_data as $row) {
                     if ($row['com_membre_id'] == $row['pdt_membre_id']) { ?>
@@ -93,9 +98,6 @@ if (isset($_POST['comment'])) {
                   <?php }
                 } ?>
               </div>
-              <?php
-            }
-            ?>
 
 
           </div>

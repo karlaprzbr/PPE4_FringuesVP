@@ -9,9 +9,11 @@
       grid-row: 1 !important;
       justify-content: unset !important;
       border-bottom: 2px solid #EFEFEF;
-      position: fixed;
+      position: fixed !important;
       top: 0;
       width: 100%;
+      background-color: white;
+      z-index: 1 !important;
     }
 
     header a {
@@ -31,6 +33,7 @@
       position: fixed;
       top: 30px;
       right: 20px;
+      z-index: 1 !important;
     }
 
     .navig.responsive {
@@ -50,14 +53,36 @@
         text-align: left;
     }
 
+    #sideNav {
+      display: none !important;
+    }
+
     #main {
       grid-column: 1 !important;
       grid-row: 2 !important;
+      z-index: 0 !important;
+      padding: 10px !important;
+    }
+
+    #main.index {
+      padding: 0 !important;
     }
 
     #main img {
       display: flex !important;
       width: 100%;
+    }
+
+    #produits {
+      justify-content: center;
+    }
+
+    .commentaire form {
+      flex-direction: column !important;
+    }
+
+    .commentaire input {
+      margin: 10px 0 !important;
     }
 
     .homeHeader {

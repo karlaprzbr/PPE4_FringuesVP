@@ -1,8 +1,21 @@
 <header id="navig" class="navig">
     <a href="index.php"><h1>FRINGUES <span>ventes privées</span></h1></a>
     <a href="categories.php">Catégories</a>
-    <a href="panier.php">Panier</a>
-    <a href="connexion.php">Connexion</a>
+    <a href="panier.php"><i class="fas fa-shopping-cart"></i> Panier
+    <?php
+    if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
+      $nb_articles_panier = count($_SESSION['panier']['pdt_libelle']);
+      echo "(".$nb_articles_panier.")";
+    }
+    ?>
+    </a>
+    <?php
+    if (isset($_SESSION['mail'])) {
+      echo "<a href=\"profil.php\"><i class=\"fas fa-user\"></i> Profil</a>";
+    } else {
+      echo "<a href=\"connexion.php\"><i class=\"fas fa-user\"></i> Connexion / Inscription</a>";
+    }
+    ?>
 </header>
 <a href="javascript:void(0);" class="icon" onclick="openNav()"><i class="fa fa-bars"></i></a>
 <script src="js/openNav.js"></script>

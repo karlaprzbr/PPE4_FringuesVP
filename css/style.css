@@ -23,9 +23,30 @@ a:hover {
     text-decoration: underline;
 }
 
-h1, h2, h3, h4, h5, h6, p, a, a:hover, li, td {
+h1, h2, h3, h4, h5, h6, p, a, a:hover, li, td, .button {
     color: #444;
     font-family: 'Varela Round', sans-serif;
+}
+
+.button {
+  border: none;
+  border-radius: 5px;
+  color: white;
+  background-color: #444;
+  cursor: pointer;
+}
+
+.button:hover {
+  background-color: grey;
+}
+
+.text {
+  width: 100%;
+  border-top: none;
+  border-right: none;
+  border-bottom: 2px solid #efefef;
+  border-left: none;
+  cursor: text;
 }
 
 /** HEADER **/
@@ -61,6 +82,10 @@ nav {
     justify-content: space-between;
     align-items: center;
     border-bottom: 2px solid #EFEFEF;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    background-color: white;
 }
 
 nav li {
@@ -121,13 +146,18 @@ nav form {
 }
 
 #contenu {
-
+  position: sticky;
+  top: 100px;
+  z-index: 1;
+  background-color: white;
 }
 
 /** MAIN **/
 #main {
     grid-row: 3;
     grid-column: 2;
+    z-index: 0;
+    padding: 20px 0;
 }
 
 #main .homeHeader {
@@ -149,6 +179,38 @@ nav form {
 
 #main img.banniere {
   display: none;
+}
+
+/** COMMENTAIRES **/
+.commentaire {
+  background-color: #EFEFEF;
+  padding: 10px;
+  display: flex;
+  flex-direction: column;
+}
+
+.commentaire form {
+  display: flex;
+}
+
+.commentaire form input {
+  margin:10px;
+}
+
+.reponse {
+  width: 40%;
+  background-color: white;
+  align-self: flex-end;
+  padding: 0 10px;
+  margin: 10px;
+}
+
+.question {
+  width: 40%;
+  background-color: white;
+  align-self: flex-start;
+  padding: 0 10px;
+  margin: 10px;
 }
 
 /** CONNEXION MAIN **/
@@ -218,6 +280,14 @@ nav form {
   background-color: #EFEFEF;
 }
 
+/** CATEGORES MAIN **/
+#phoneCateg ul, #phoneCateg li {
+  list-style-type: none;
+}
+
+#phoneCateg .bold {
+  font-weight: bold;
+}
 
 /** FOOTER **/
 footer {
