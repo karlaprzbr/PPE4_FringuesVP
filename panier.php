@@ -47,7 +47,7 @@ if (!$erreur){
       Case "refresh" :
          for ($i = 0 ; $i < count($QteArticle) ; $i++)
          {
-            modifierQTeArticle($_SESSION['panier']['libelleProduit'][$i],round($QteArticle[$i]));
+            modifierQTeArticle($_SESSION['panier']['pdt_libelle'][$i],round($QteArticle[$i]));
          }
          break;
 
@@ -127,7 +127,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['payer'])) {
                   echo "<td>".MontantGlobal()."€ </td></tr>";
 
                   echo "<tr><td><form action=\"panier.php\" method=\"post\">";
-                  echo "<input type=\"submit\" value=\"Payer\" name=\"payer\"/>";
+                  echo "<input type=\"submit\" class=\"button\" value=\"Payer\" name=\"payer\"/>";
                   echo "</form></td></tr></table></form>";
                 }
               }

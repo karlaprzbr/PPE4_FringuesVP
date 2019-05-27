@@ -34,6 +34,7 @@ h1, h2, h3, h4, h5, h6, p, a, a:hover, li, td, .button {
   color: white;
   background-color: #444;
   cursor: pointer;
+  height: 30px;
 }
 
 .button:hover {
@@ -191,10 +192,12 @@ nav form {
 
 .commentaire form {
   display: flex;
+  flex-direction: row;
 }
 
 .commentaire form input {
   margin:10px;
+  height: 25px;
 }
 
 .reponse {

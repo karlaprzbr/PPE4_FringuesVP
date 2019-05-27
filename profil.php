@@ -73,7 +73,6 @@ include("fonctions_panier.php");
               <td><?=$req_membre['membre_mail'] ?></td>
             </tr>
             <tr>
-              <td><button value="Modifier le profil">Modifier le profil</button></td>
               <td>
                 <form action="profil.php" method="post">
                   <input type="submit" class="button" name="deconnexion" value="Deconnexion">

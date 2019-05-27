@@ -4,8 +4,8 @@
     <a href="panier.php"><i class="fas fa-shopping-cart"></i> Panier
     <?php
     if (isset($_SESSION['panier']) && !empty($_SESSION['panier'])) {
-      $nb_articles_panier = count($_SESSION['panier']['pdt_libelle']);
-      echo "(".$nb_articles_panier.")";
+      $nb_pdt = count($_SESSION['panier']['pdt_id']);
+      echo " (".$nb_pdt.")";
     }
     ?>
     </a>
