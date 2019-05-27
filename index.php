@@ -1,6 +1,7 @@
 <?php
 session_start();
 require_once("includes/script.php");
+include("fonctions_panier.php");
 ?>
 
 <!doctype html>

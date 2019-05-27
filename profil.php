@@ -1,6 +1,7 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=fringuesvp;charset=utf8', 'root', '');
+require_once("includes/script.php");
+include("fonctions_panier.php");
 ?>
 
 <!doctype html>
@@ -63,10 +64,6 @@ $bdd = new PDO('mysql:host=localhost;dbname=fringuesvp;charset=utf8', 'root', ''
             <tr>
               <td>Mail :</td>
               <td><?=$requete['membre_mail'] ?></td>
-            </tr>
-            <tr>
-              <td>Pseudo :</td>
-              <td><?=$requete['membre_pseudo'] ?></td>
             </tr>
             <tr>
               <td><button value="Modifier le profil">Modifier le profil</button></td>

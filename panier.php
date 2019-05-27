@@ -1,5 +1,6 @@
 <?php
 session_start();
+require_once("includes/script.php");
 include("fonctions_panier.php");
 $erreur = false;
 
@@ -59,7 +60,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['payer'])) {
   // $_SESSION['nb_commandes'] += 1;
   // var_dump($_SESSION['nb_commandes']);
   // exit();
-  $bdd = new PDO('mysql:host=localhost;dbname=fringuesvp;charset=utf8', 'root', '');
+  $bdd = new PDO('mysql:host=localhost;dbname=ppe4_fringuesvp;charset=utf8', 'root', '');
   $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   //$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
   for ($i = 0; $i < count($_SESSION['panier']['pdt_libelle']); $i++) {

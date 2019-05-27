@@ -1,8 +1,8 @@
 <?php
 session_start();
-$bdd = new PDO('mysql:host=localhost;dbname=fringuesvp','root','');
-$bdd->exec("SET NAMES 'UTF8'");
-$produits = $bdd->query('SELECT * FROM produits INNER JOIN images ON produits.pdt_img_id = images.img_id INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE genre_libelle = "homme" AND type_vet_libelle = "vestes_manteaux"');
+require_once("includes/script.php");
+include("fonctions_panier.php");
+$produits = $bdd->query('SELECT * FROM produits INNER JOIN genres_vet ON produits.pdt_genre_vet_id = genres_vet.genre_vet_id INNER JOIN types_vet ON produits.pdt_type_vet_id = types_vet.type_vet_id INNER JOIN membres ON produits.pdt_membre_id = membres.membre_id WHERE genre_vet_libelle = "homme" AND type_vet_libelle = "Vestes / manteaux"');
 $donnees = $produits->fetchAll();
 ?>
 
@@ -38,7 +38,7 @@ $donnees = $produits->fetchAll();
             ?>
             <div class="produit">
               <p class="title"><?php echo $row['pdt_libelle'] ?></p>
-              <a href="fiche_produit.php?pdt_id=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['img_lien'] ?>" /></a>
+              <a href="fiche_produit.php?pdt_id=<?= $row['pdt_id'] ?>"><img src="<?php echo $row['pdt_img_lien'] ?>" /></a>
               <p><?php echo $row['pdt_prix'] ?> €</p>
               <p>Taille <?php echo $row['pdt_taille'] ?></p>
             </div>

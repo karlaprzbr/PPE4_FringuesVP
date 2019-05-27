@@ -43,7 +43,9 @@ require_once("fonctions_panier.php");
             </form>
             <?php
             if (isset($_POST['envoi']) AND isset($_POST['mail']) AND isset($_POST['mdp']) AND !empty($_POST['mail']) AND !empty($_POST['mdp'])) {
-              $requete = $bdd->query('SELECT * FROM membres WHERE membre_mail = "'.$_POST['mail'].'" AND membre_MDP = "'.$_POST['mdp'].'"')->fetch();
+              $mail_con = htmlspecialchars($_POST['mail']);
+              $mdp_con = sha1($_POST['mdp']);
+              $requete = $bdd->query('SELECT * FROM membres WHERE membre_mail = "'.$mail_con.'" AND membre_mdp = "'.$mdp_con.'"')->fetch();
               if ($requete) {
                 $_SESSION['id'] = $requete['membre_id'];
                 $_SESSION['mail'] = $requete['membre_mail'];
