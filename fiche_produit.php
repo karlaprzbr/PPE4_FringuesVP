@@ -18,23 +18,7 @@ if(isset($_GET['pdt_id']) AND !empty($_GET['pdt_id'])) {
 } else {
   die('Erreur');
 }
-if (isset($_POST['comment'])) {
-  if (!empty($_POST['objet']) && !empty($_POST['commentaire'])) {
-    $com_objet = htmlspecialchars($_POST['objet']);
-    $com_texte = htmlspecialchars($_POST['commentaire']);
-    $com_date = date("Y-m-d H:i:s");
-    $com_pdt_id = $pdt_id;
-    $com_membre_id = $_SESSION['id'];
-    try {
-      $requete = $bdd->prepare('INSERT INTO commentaires(com_objet,com_texte,com_date,com_pdt_id,com_membre_id) VALUES(?,?,?,?,?)');
-      $requete->execute(array($com_objet,$com_texte,$com_date,$com_pdt_id,$com_membre_id));
-      echo "<p>Votre commentaire a bien été posté.</p>";
-    } catch (\Exception $e) {
-      echo $e->getMessage();
-    }
 
-  }
-}
 ?>
 
 <!doctype html>
@@ -77,6 +61,24 @@ if (isset($_POST['comment'])) {
                   <input type="text" class="text"name="commentaire" placeholder="Commentaire"/>
                   <input type="submit" class="button" value="Envoyer" name="comment"/>
                   </form>
+                  <?php
+                  if (isset($_POST['comment'])) {
+                    if (!empty($_POST['objet']) && !empty($_POST['commentaire'])) {
+                      $com_objet = htmlspecialchars($_POST['objet']);
+                      $com_texte = htmlspecialchars($_POST['commentaire']);
+                      $com_date = date("Y-m-d H:i:s");
+                      $com_pdt_id = $pdt_id;
+                      $com_membre_id = $_SESSION['id'];
+                      try {
+                        $requete = $bdd->prepare('INSERT INTO commentaires(com_objet,com_texte,com_date,com_pdt_id,com_membre_id) VALUES(?,?,?,?,?)');
+                        $requete->execute(array($com_objet,$com_texte,$com_date,$com_pdt_id,$com_membre_id));
+                        echo "<p>Votre commentaire a bien été posté.</p>";
+                      } catch (\Exception $e) {
+                        echo $e->getMessage();
+                      }
+                    }
+                  }
+                  ?>
                   <?php
                 } else if (!empty($com_data)) {
                   echo "<h2>Commentaires</h2>";

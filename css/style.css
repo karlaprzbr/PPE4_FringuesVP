@@ -266,6 +266,7 @@ nav form {
 #produits {
   display: inline-flex;
   flex-wrap: wrap;
+  justify-content: center;
 }
 
 .produit {

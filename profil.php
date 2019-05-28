@@ -20,6 +20,7 @@ include("fonctions_panier.php");
         </nav>
 
         <div id="main">
+
           <?php
           if (isset($_SESSION['id'])) {
             $req_membre = $bdd->query('SELECT * FROM membres WHERE membre_id = '.$_SESSION['id'])->fetch();
@@ -27,6 +28,39 @@ include("fonctions_panier.php");
             $donnees = $req_produits->fetchAll();
             ?>
             <h2><?=$req_membre['membre_prenom']?> <?=$req_membre['membre_nom']?></h2>
+            <h3>Données personnelles</h3>
+            <table>
+              <tr>
+                <td>Nom :</td>
+                <td><?=$req_membre['membre_nom'] ?></td>
+              </tr>
+              <tr>
+                <td>Prénom :</td>
+                <td><?=$req_membre['membre_prenom'] ?></td>
+              </tr>
+              <tr>
+                <td>Adresse :</td>
+                <td><?=$req_membre['membre_adresse'] ?></td>
+              </tr>
+              <tr>
+                <td>Mail :</td>
+                <td><?=$req_membre['membre_mail'] ?></td>
+              </tr>
+              <tr>
+                <td>
+                  <form action="profil.php" method="post">
+                    <input type="submit" class="button" name="deconnexion" value="Deconnexion">
+                  </form>
+                  <?php
+                  if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['deconnexion'])) {
+                    session_destroy();
+                    header("Location: index.php");
+                  }
+                  ?>
+                </td>
+              </tr>
+            </table>
+            <h3>Gestion du profil</h3>
             <p>Nombre de commandes :
               <?php
               if (isset($_SESSION['nb_cmd'])) {
@@ -53,40 +87,6 @@ include("fonctions_panier.php");
             <?php
           }
           ?>
-
-          <h2>Données personnelles</h2>
-          <table>
-            <tr>
-              <td>Nom :</td>
-              <td><?=$req_membre['membre_nom'] ?></td>
-            </tr>
-            <tr>
-              <td>Prénom :</td>
-              <td><?=$req_membre['membre_prenom'] ?></td>
-            </tr>
-            <tr>
-              <td>Adresse :</td>
-              <td><?=$req_membre['membre_adresse'] ?></td>
-            </tr>
-            <tr>
-              <td>Mail :</td>
-              <td><?=$req_membre['membre_mail'] ?></td>
-            </tr>
-            <tr>
-              <td>
-                <form action="profil.php" method="post">
-                  <input type="submit" class="button" name="deconnexion" value="Deconnexion">
-                </form>
-                <?php
-                if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['deconnexion'])) {
-                  session_destroy();
-                  header("Location: index.php");
-                }
-                ?>
-              </td>
-            </tr>
-          </table>
-
 
         </div>
 

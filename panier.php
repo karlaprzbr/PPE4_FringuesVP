@@ -56,27 +56,7 @@ if (!$erreur){
    }
 }
 
-if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['payer'])) {
-  // $_SESSION['nb_commandes'] += 1;
-  // var_dump($_SESSION['nb_commandes']);
-  // exit();
-  $bdd = new PDO('mysql:host=localhost;dbname=ppe4_fringuesvp;charset=utf8', 'root', '');
-  $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  //$bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
-  for ($i = 0; $i < count($_SESSION['panier']['pdt_libelle']); $i++) {
-    $requete = 'DELETE FROM produits WHERE pdt_id = '.$_SESSION['panier']['pdt_id'][$i];
-    // var_dump($_SESSION['panier']['pdt_id'][$i]);
-    // exit();
-    try {
-      $bdd->exec($requete);
-      echo "<p>Commande validée !</p>";
-      $_SESSION['nb_cmd'] = $_SESSION['nb_cmd'] + 1;
-    } catch(PDOException $e) {
-      echo $requete . "<br>" . $e->getMessage();
-    }
-  }
-  supprimerPanier();
-}
+
 ?>
 
 <!doctype html>
@@ -130,6 +110,24 @@ if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['payer'])) {
                   echo "<input type=\"submit\" class=\"button\" value=\"Payer\" name=\"payer\"/>";
                   echo "</form></td></tr></table></form>";
                 }
+              }
+              if ($_SERVER['REQUEST_METHOD'] == "POST" && isset($_POST['payer'])) {
+
+                $bdd = new PDO('mysql:host=localhost;dbname=ppe4_fringuesvp;charset=utf8', 'root', '');
+                $bdd->setAttribute(PDO::ATTR_ERRMODE, PDO::ERRMODE_EXCEPTION);
+                for ($i = 0; $i < count($_SESSION['panier']['pdt_libelle']); $i++) {
+                  $req_pdt = 'DELETE FROM produits WHERE pdt_id = '.$_SESSION['panier']['pdt_id'][$i];
+                  $req_com = 'DELETE FROM commentaires WHERE com_pdt_id ='.$_SESSION['panier']['pdt_id'][$i];
+                  try {
+                    $bdd->exec($req_com);
+                    $bdd->exec($req_pdt);
+                    echo "<p>Commande validée !</p>";
+                    $_SESSION['nb_cmd'] = $_SESSION['nb_cmd'] + 1;
+                  } catch(PDOException $e) {
+                    echo $req_pdt . "<br>" . $e->getMessage();
+                  }
+                }
+                supprimerPanier();
               }
             	?>
         </div>
